@@ -1,0 +1,22 @@
+- hosts: remote1
+  tasks:
+  - name: Ansible check file exists example.
+    stat:
+      path: /etc/hosts
+    register: file_details
+
+  - debug:
+      msg: "The file or directory exists"
+    when: file_details.stat.exists
+  - name: run ls command 
+    become: yes
+    command: ls
+    register: lsoutput    
+  - name: Update system
+    become: yes
+    command: apt update    
+    #  - name: Install gcc 
+    #stat:
+    #  path: /etc/hostsMUni
+    #register: file_details
+

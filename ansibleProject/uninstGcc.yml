@@ -1,0 +1,29 @@
+- hosts: remote1
+  tasks:
+  - name: Ansible check file exists example.
+    stat:
+      path: /etc/hosts
+    register: file_details
+
+  - debug:
+      msg: "The file or directory exists"
+    when: file_details.stat.exists
+  - name: run ls command 
+    become: yes
+    command: ls
+    register: lsoutput    
+
+  - name: Uninstall gcc 
+    become: yes
+    apt: name=gcc update_cache=yes cache_valid_time=3600 state=absent  
+
+  - name: Uninstall valgrind 
+    become: yes
+    apt: name=valgrind update_cache=yes cache_valid_time=3600 state=absent  
+    #stat:
+    #  path: /etc/hostsMUni
+    #register: file_details
+  - name: Uninstall lynx 
+    become: yes
+    apt: name=lynx update_cache=yes cache_valid_time=3600 state=absent  
+

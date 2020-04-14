@@ -1,0 +1,6 @@
+[mylocal]
+127.0.0.1  ansible_connection=local 
+[mylocalmachine]
+127.0.0.1  ansible_connection=local 
+[remote1]
+3.21.76.20
